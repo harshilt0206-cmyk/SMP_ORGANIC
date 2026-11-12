@@ -40,7 +40,21 @@ def init_db():
         )
     ''')
 
-    # Reviews table
+    # Customer Product Reviews & Ratings table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS product_reviews (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            product_id TEXT NOT NULL,
+            customer_name TEXT NOT NULL,
+            location TEXT,
+            crop TEXT,
+            rating INTEGER NOT NULL CHECK(rating >= 1 AND rating <= 5),
+            review_text TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    # General / Testimonial Reviews table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS reviews (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,6 +66,41 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+
+    # Seed initial authentic product reviews if table is empty
+    count = cursor.execute("SELECT COUNT(*) FROM product_reviews").fetchone()[0]
+    if count == 0:
+        initial_reviews = [
+            (
+                "smp-super-gold-organic-manure-40kg",
+                "Ramesh Gowda",
+                "Mandya District, Karnataka",
+                "Sugarcane & Paddy",
+                5,
+                "Using SMP Organic Manure improved our soil moisture retention drastically during dry weeks. The 40 KG bags are convenient to handle across the farm."
+            ),
+            (
+                "smp-super-gold-organic-manure-40kg",
+                "Suresh Kumar",
+                "Tumakuru, Karnataka",
+                "Arecanut Plantation",
+                5,
+                "The organic manure quality is very good and uniform. Basin application around my arecanut trees gave steady new root flushes."
+            ),
+            (
+                "smp-super-gold-organic-manure-40kg",
+                "Lakshmi Devi",
+                "Hassan Region",
+                "Coconut & Vegetable Farm",
+                5,
+                "Bought 30 bags for our coconut palms. Excellent maturation and moisture retention in the soil."
+            )
+        ]
+        cursor.executemany(
+            """INSERT INTO product_reviews (product_id, customer_name, location, crop, rating, review_text)
+               VALUES (?, ?, ?, ?, ?, ?)""",
+            initial_reviews
+        )
 
     conn.commit()
     conn.close()

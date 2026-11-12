@@ -1,12 +1,21 @@
 /**
+ * ============================================================================
  * SMP ORGANIC - CENTRAL BUSINESS & VERIFIED CONTACT CONFIGURATION
+ * ============================================================================
  * 
  * Verified Contacts:
  * 1. Main Contact (General & WhatsApp enquiries): Chethan (+91 7892760379)
  * 2. Orders & Delivery: Avinash (+91 9964002548)
  * 
- * All components across the project consume this shared configuration.
+ * Note for Maintenance:
+ * - Update phone numbers, WhatsApp links, and address below.
+ * - To change YouTube videos, edit `src/data/videos.js`.
+ * - To update manure product details, edit `src/data/products.js`.
+ * - To update nursery plants, edit `src/data/plants.js`.
+ * - To update gallery photos, edit `src/data/gallery.js`.
  */
+
+import { videos } from './videos';
 
 export const contacts = {
   main: {
@@ -42,8 +51,8 @@ export const businessInfo = {
   ordersName: contacts.orders.name,
   mainContactName: contacts.main.name,
 
-  email: "contact@smporganic.com", // Placeholder
-  address: "SMP Organic Agro Farm & Processing Unit, Regional Agriculture Belt, Karnataka, India", // Verified region from product packaging
+  email: "contact@smporganic.com",
+  address: "SMP Organic Agro Farm & Processing Unit, Regional Agriculture Belt, Karnataka, India",
   businessHours: "Monday - Saturday: 8:00 AM - 6:00 PM | Sunday: Closed",
 
   // Social Community Statistics (Editable configuration)
@@ -55,21 +64,16 @@ export const businessInfo = {
     happyFarmers: "1,500+",
   },
 
-  // Social Media Links (Placeholders until actual URLs are supplied)
+  // Social Media Links
   socialLinks: {
-    facebook: "https://facebook.com/smporganic", // Placeholder URL
-    instagram: "https://instagram.com/smporganic", // Placeholder URL
+    facebook: "https://facebook.com/smporganic",
+    instagram: "https://instagram.com/smporganic",
     whatsappGroup: contacts.main.whatsappLink,
-    youtube: "https://youtube.com/@smporganic" // Placeholder URL
+    youtube: "https://youtube.com/@smporganic"
   },
 
-  // Process Video Configuration
-  processVideo: {
-    title: "See How SMP Organic Manure Is Prepared",
-    description: "Take a visual journey through our raw material collection, enrichment, natural maturation, and packaging process.",
-    embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    posterImage: "/images/smp-manure-packing-stock.jpg" // Genuine photo of packed manure bags at processing unit
-  },
+  // Process Video Reference (Full configuration is in src/data/videos.js)
+  processVideo: videos[0],
 
   // Raw Material Mixture Description
   rawMaterials: [

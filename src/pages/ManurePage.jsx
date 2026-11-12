@@ -4,6 +4,7 @@ import { mainProduct } from '../data/products';
 import { businessInfo, contacts } from '../data/business';
 import ProcessTimeline from '../components/ProcessTimeline';
 import VideoPlayer from '../components/VideoPlayer';
+import RatingComponent from '../components/RatingComponent';
 import WhatsAppButton from '../components/WhatsAppButton';
 import GalleryModal from '../components/GalleryModal';
 
@@ -282,6 +283,16 @@ const ManurePage = () => {
           </div>
 
           <ProcessTimeline />
+        </div>
+      </section>
+
+      {/* Customer Product Ratings & Reviews */}
+      <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-card-alt)' }}>
+        <div className="container">
+          <RatingComponent 
+            productId={mainProduct.id} 
+            productName={mainProduct.name} 
+          />
         </div>
       </section>
 
